@@ -12,7 +12,7 @@ def main():
 
 class DynDnsInteract:
     
-    phantomjs_bin = "/usr/local/bin/phantomjs"
+    phantomjs_bin = '/usr/local/bin/phantomjs'
     
     def __init__(self, url, notify_email, username, passwd):
         self.url = url
@@ -23,13 +23,21 @@ class DynDnsInteract:
         
         
     def login(self):
-        # User requests to check valid url as
-        # selenium doesn't have this function!
-        r=requests.get(self.url)
+        # Use requests module to check valid url as
+        # selenium webdriver doesn't have this function!
+        r = requests.get(self.url)
         r.raise_for_status()
-        
+         
         self.browser = webdriver.PhantomJS(DynDnsInteract.phantomjs_bin)
         self.browser.get(self.url)
+         
+        username = self.browser.find_element_by_name('username')
+        password = self.browser.find_element_by_name('password')
+        submit = self.browser.find_element_by_name('submit')
+         
+        username.send_keys(self.username)
+        password.send_keys(self.passwd)
+        submit.click()
 
 
 if __name__ == '__main__':
