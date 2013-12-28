@@ -7,12 +7,11 @@ import unittest
 from dyndnsup.dyndns_update import DynDnsInteract
 from requests import RequestException
 
-
 class TestDynDnsUpdate(unittest.TestCase):
 
 
-    def testInvalidLogin(self):
-        interact = DynDnsInteract("http://www.url.bad", "test@mail.com")
+    def testInvalidUrl(self):
+        interact = DynDnsInteract("http://www.url.bad", "test@mail.com", "username", "password")
         self.assertRaises(RequestException, interact.login())
 
 
