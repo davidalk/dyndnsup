@@ -14,11 +14,17 @@ def main():
 
 def load_logins():
     config = configparser.ConfigParser()
-    file = os.path.join(os.path.dirname(__file__), 'login.cfg')
+    file = os.path.join(os.path.dirname(__file__), 'settings.cfg')
     config.read_file(open(file))
-    username = config['DEFAULT']['username']
-    password = config['DEFAULT']['password']
+    username = config['USER']['username']
+    password = config['USER']['password']
     return (username, password)
+
+def load_settings():
+    config = configparser.ConfigParser()
+    file = os.path.join(os.path.dirname(__file__), 'settings.cfg')
+    config.read_file(open(file))
+    return config['CONFIG']
 
 class DynDnsInteract:
     
