@@ -6,9 +6,19 @@ Created on 27 Dec 2013
 
 from selenium import webdriver
 import requests
+import configparser
+import os
 
 def main():
     pass
+
+def load_logins():
+    config = configparser.ConfigParser()
+    file = os.path.join(os.path.dirname(__file__), 'login.cfg')
+    config.read_file(open(file))
+    username = config['DEFAULT']['username']
+    password = config['DEFAULT']['password']
+    return (username, password)
 
 class DynDnsInteract:
     
@@ -36,14 +46,14 @@ class DynDnsInteract:
         submit = self.browser.find_element_by_name('submit')
          
         username.send_keys(self.username)
-        password.send_keys(self.passwd)
+        password.send_keys(self.passwd)        
         submit.click()
         if self.browser.title != 'My Dyn Account':
             raise InvalidLoginException('Login failed, browser title: ' + self.browser.title)
+        print('Login to DynDns Successful')
 
 
 class InvalidLoginException(Exception):
-    
     def __init__(self, message):
         self.message = message
 
