@@ -10,7 +10,9 @@ Setup:
 
 2. Ues your prefered Python package manager to install [Selenium](https://pypi.python.org/pypi/selenium)
 
-3. Create a file called settings.cfg in the same directory as the dyndns_update.py module file, sample file as follows:
+3. Download this repository
+
+4. Create a file called settings.cfg in the same directory as the dyndns_update.py module file, sample file as follows:
 
 ```
 [USER]
@@ -19,4 +21,6 @@ Password = yourpass
 
 [CONFIG]
 Url = https://account.dyn.com/entrance/
+Hostname = kanani.dyndns-free.com
+Email = david.alkanani@gmail.com
 ```
