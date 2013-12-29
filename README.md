@@ -1,7 +1,7 @@
 # dyndnsup
 ==============
 
-Automatic refresh of dyndns service
+Automatic refresh of dyndns service, minimum Python version 3.3 required
 
 
 Setup:
