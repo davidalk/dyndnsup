@@ -25,3 +25,5 @@ Hostname = yourhost.dyndns-free.com
 Email = your@mail.com
 PhantomJS = /usr/local/bin/phantomjs
 ```
+
+5. To execute: '''python3 dyndns_update.py'''
