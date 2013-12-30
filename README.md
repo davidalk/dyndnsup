@@ -20,7 +20,8 @@ Username = youruser
 Password = yourpass
 
 [CONFIG]
-Url = https://account.dyn.com/entrance/
-Hostname = kanani.dyndns-free.com
-Email = david.alkanani@gmail.com
+DynDnsUrl = https://account.dyn.com/entrance/
+Hostname = yourhost.dyndns-free.com
+Email = your@mail.com
+PhantomJS = /usr/local/bin/phantomjs
 ```
