@@ -7,14 +7,14 @@ import unittest
 from dyndnsup import dyndns_update
 from dyndnsup.dyndns_update import DynDnsInteract
 from dyndnsup.dyndns_update import InvalidLoginException
-from requests import RequestException
+from urllib import error
 
 class TestDynDnsUpdate(unittest.TestCase):
 
-    def testInvalidUrl(self):
-        interact = DynDnsInteract('www.url.bad', 'test@mail.com', 'username', 
+    def testUnreachableUrl(self):
+        interact = DynDnsInteract('http://www.url.bad', 'test@mail.com', 'username', 
                                   'password', 'my.dn.com', '/usr/local/bin/phantomjs')
-        with self.assertRaises(RequestException):
+        with self.assertRaises(error.URLError):
             interact.login()
     
     def testValidLogin(self):

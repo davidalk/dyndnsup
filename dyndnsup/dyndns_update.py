@@ -5,7 +5,7 @@ Created on 27 Dec 2013
 '''
 
 from selenium import webdriver
-import requests
+from urllib import request
 import configparser
 import os
 import re
@@ -50,10 +50,7 @@ class DynDnsInteract:
         
         
     def login(self):
-        # Use requests module to check valid dyndnsurl as
-        # selenium webdriver doesn't have this function!
-        r = requests.get(self.dyndnsurl)
-        r.raise_for_status()
+        request.urlopen(self.dyndnsurl)
          
         self.browser = webdriver.PhantomJS(self.phantomjs_bin)
         self.browser.get(self.dyndnsurl)
