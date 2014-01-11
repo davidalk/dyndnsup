@@ -22,12 +22,12 @@ def main():
         interact.update_ip(external_ip)
     except Exception as ex:
         send_error(ex, config)
-        exit()
+
 
 def send_error(ex, config):
     body = 'Error type: ' + type(ex).__name__ + '\nMessage: '
     for arg in ex.args:
-        body += arg + ' '
+        body += arg + '\n'
     msg = MIMEText(body)
     msg['Subject'] = 'DYNDNS Update Error'
     msg['From'] = 'donotreply'
@@ -40,6 +40,7 @@ def send_error(ex, config):
     server.send_message(msg)
     server.quit()
 
+
 def load_settings():
     config = configparser.ConfigParser()
     file = os.path.join(os.path.dirname(__file__), 'settings.cfg')
@@ -47,6 +48,7 @@ def load_settings():
     username = config['USER']['username']
     password = config['USER']['password']
     return (username, password, config['CONFIG'])
+
 
 def get_external_ip(phantomjs_bin):
         browser = webdriver.PhantomJS(phantomjs_bin)
