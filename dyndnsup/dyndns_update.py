@@ -9,15 +9,36 @@ from urllib import request
 import configparser
 import os
 import re
+import smtplib
+from email.mime.text import MIMEText
 
 def main():
     (username, password, config) = load_settings()
     interact = DynDnsInteract(config['DynDnsUrl'], config['Email'], username, 
                               password, config['Hostname'], config['PhantomJS'])
-    interact.login()
-    external_ip = get_external_ip(config['PhantomJS'])
-    interact.update_ip(external_ip)
+    try:
+        interact.login()
+        external_ip = get_external_ip(config['PhantomJS'])
+        interact.update_ip(external_ip)
+    except Exception as ex:
+        send_error(ex, config)
+        exit()
+
+def send_error(ex, config):
+    body = 'Error type: ' + type(ex).__name__ + '\nMessage: '
+    for arg in ex.args:
+        body += arg + ' '
+    msg = MIMEText(body)
+    msg['Subject'] = 'DYNDNS Update Error'
+    msg['From'] = 'donotreply'
+    msg['To'] = config['Email']
     
+    server = smtplib.SMTP(config['Smtp'])
+    server.ehlo_or_helo_if_needed()
+    server.starttls()
+    server.login(config['SmtpUser'], config['SmtpPassword'])
+    server.send_message(msg)
+    server.quit()
 
 def load_settings():
     config = configparser.ConfigParser()
@@ -39,9 +60,8 @@ def get_external_ip(phantomjs_bin):
 class DynDnsInteract:
     
     
-    def __init__(self, dyndnsurl, notify_email, username, passwd, hostname, phantomjs_bin):
+    def __init__(self, dyndnsurl, username, passwd, hostname, phantomjs_bin):
         self.dyndnsurl = dyndnsurl
-        self.notify_email = notify_email
         self.username = username
         self.passwd = passwd
         self.hostname = hostname
