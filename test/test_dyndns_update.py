@@ -6,7 +6,7 @@ Created on 27 Dec 2013
 import unittest
 from dyndnsup import dyndns_update
 from dyndnsup.dyndns_update import DynDnsInteract
-from dyndnsup.dyndns_update import InvalidLoginException
+from dyndnsup.dyndns_update import InvalidLoginError
 from urllib import error
 
 class TestDynDnsUpdate(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestDynDnsUpdate(unittest.TestCase):
     def testInvalidLogin(self):
         interact = DynDnsInteract('https://account.dyn.com/entrance/', 'david.alkanani@gmail.com', 'bad', 
                                   'login', 'my.dn.com', '/usr/local/bin/phantomjs')
-        with self.assertRaises(InvalidLoginException):
+        with self.assertRaises(InvalidLoginError):
             interact.login()
 
 if __name__ == '__main__':

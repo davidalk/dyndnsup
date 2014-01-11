@@ -64,7 +64,7 @@ class DynDnsInteract:
         password.send_keys(self.passwd)        
         submit.click()
         if self.browser.title != 'My Dyn Account':
-            raise InvalidLoginException('Login failed, browser title: ' + self.browser.title)
+            raise InvalidLoginError('Login failed, browser title: ' + self.browser.title)
         print('Login to DynDns Successful')
         
         
@@ -88,9 +88,8 @@ class DynDnsInteract:
         save.click()
 
 
-class InvalidLoginException(Exception):
-    def __init__(self, message):
-        self.message = message
+class InvalidLoginError(Exception):
+    pass
 
 if __name__ == '__main__':
     main()
