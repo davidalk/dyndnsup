@@ -24,6 +24,9 @@ Setup:
 	Hostname = yourhost.dyndns-free.com
 	Email = your@mail.com
 	PhantomJS = /usr/local/bin/phantomjs
+	Smtp = yout.smtp.com
+	SmtpUser = smtpuser
+	SmtpPassword = smtppass
 	```
 
 5. To execute: ```python3 dyndns_update.py```
