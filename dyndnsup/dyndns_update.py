@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 
 def main():
     (username, password, config) = load_settings()
-    interact = DynDnsInteract(config['DynDnsUrl'], config['Email'], username, 
+    interact = DynDnsInteract(config['DynDnsUrl'], username, 
                               password, config['Hostname'], config['PhantomJS'])
     try:
         interact.login()
