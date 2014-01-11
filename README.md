@@ -24,7 +24,7 @@ Setup:
 	Hostname = yourhost.dyndns-free.com
 	Email = your@mail.com
 	PhantomJS = /usr/local/bin/phantomjs
-	Smtp = yout.smtp.com
+	Smtp = your.smtp.com
 	SmtpUser = smtpuser
 	SmtpPassword = smtppass
 	```
